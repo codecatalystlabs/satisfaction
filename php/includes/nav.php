@@ -6,9 +6,9 @@
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item"><a class="nav-link active" href="index.php"><i class="fas fa-tachometer-alt"></i><span>Home</span></a></li>
             <li class="nav-item"><a class="nav-link" href="bribe.php"><i class="fas fa-user"></i><span><strong>Bribe</strong></span></a></li>
-            <li class="nav-item"><a class="nav-link" href="factors.php"><i class="fas fa-user"></i><span>Factors</span></a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="factors.php"><i class="fas fa-user"></i><span>Factors</span></a></li> -->
             <li class="nav-item"><a class="nav-link" href="feedback.php"><i class="fas fa-user"></i><span>Feedback</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="gender.php"><i class="fas fa-user"></i><span>Gender</span></a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="gender.php"><i class="fas fa-user"></i><span>Gender</span></a></li> -->
             <li class="nav-item"><a class="nav-link" href="level.php"><i class="fas fa-user"></i><span>Level</span></a></li>
             <li class="nav-item"><a class="nav-link" href="region.php"><i class="fas fa-user"></i><span>Region</span></a></li>
             <li class="nav-item"><a class="nav-link" href="service_education.php"><i class="fas fa-user"></i><span>Service Education</span></a></li>

@@ -1,25 +1,37 @@
 <?php
-require_once 'session.php';
-require_once 'config.php';
+// fetch_servicepoint_percentage.php
 
-$filters = isset($_SESSION['filters']) ? $_SESSION['filters'] : [];
+header('Content-Type: application/json');
+require_once 'config.php'; // Ensure this file sets up your $mysqli connection
 
-// Build your SQL query based on filters
-$query = "SELECT * FROM your_table WHERE 1=1";
+// Query to get the total count of entries
+$totalQuery = "SELECT COUNT(*) AS total FROM satisfaction WHERE servicepoint IS NOT NULL AND servicepoint != ''";
+$totalResult = $mysqli->query($totalQuery);
+$totalRow = $totalResult->fetch_assoc();
+$totalEntries = (int)$totalRow['total'];
 
-if (!empty($filters['region'])) {
-    $region = $mysqli->real_escape_string($filters['region']);
-    $query .= " AND region = '$region'";
-}
-
-// Add more conditions based on other filters
+// Query to get the count of entries per servicepoint
+$query = "
+    SELECT servicepoint, COUNT(*) AS count
+    FROM satisfaction
+    WHERE servicepoint IS NOT NULL AND servicepoint != ''
+    GROUP BY servicepoint
+    ORDER BY count DESC
+";
 
 $result = $mysqli->query($query);
 
-$data = [];
+$labels = [];
+$percentages = [];
+
 while ($row = $result->fetch_assoc()) {
-    $data[] = $row;
+    $labels[] = $row['servicepoint'];
+    $percentage = ($totalEntries > 0) ? round(($row['count'] / $totalEntries) * 100, 2) : 0;
+    $percentages[] = $percentage;
 }
 
-echo json_encode($data);
+echo json_encode([
+    'labels' => $labels,
+    'data' => $percentages
+]);
 ?>
